@@ -1,0 +1,22 @@
+<template>
+    <div class="max-w-4xl mx-auto p-4">
+        <h2 class="text-xl font-semibold mb-4">Edit {{modelNameSingular}}</h2>
+        <form @submit.prevent="submit">
+            {{#each columns as |column|}}
+            <div class="mb-4">
+                <label for="{{column}}" class="block font-medium">{{column}}</label>
+                <input type="text" v-model="item.{{column}}" id="{{column}}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
+            </div>
+            {{/each}}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
+        </form>
+    </div>
+</template>
+
+<script setup>
+    import { ref } from 'vue';
+    const item = ref({});
+
+    function submit() {
+    }
+</script>

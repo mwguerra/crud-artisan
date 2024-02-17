@@ -1,0 +1,18 @@
+<template>
+    <div class="max-w-4xl mx-auto p-4">
+        <h2 class="text-xl font-semibold mb-4">View {{modelNameSingular}}</h2>
+        <div>
+            {{#each columns as |column|}}
+            <div class="mb-4">
+                <label class="block font-medium">{{column}}</label>
+                <div class="mt-1">{{`item.${column}`}}</div>
+            </div>
+            {{/each}}
+        </div>
+        <a href="{{route('modelName.index')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back to List</a>
+    </div>
+</template>
+
+<script setup>
+    defineProps(['item']);
+</script>

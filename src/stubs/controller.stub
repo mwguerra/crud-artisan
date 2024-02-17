@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\{{modelName}};
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class {{controllerName}} extends Controller
+{
+    public function index(Request $request)
+{
+    $query = {{modelName}}::query();
+
+        // Add your filter logic here
+        // Example: if ($request->has('filter')) { ... }
+
+        ${{modelNamePluralLowerCase}} = $query->paginate();
+
+        return Inertia::render('{{modelNamePluralLowerCase}}/Index', compact('{{modelNamePluralLowerCase}}'));
+    }
+
+    public function create()
+{
+    return Inertia::render('{{modelNamePluralLowerCase}}/Create');
+}
+
+    public function store(Request $request)
+{
+    // Validation logic here
+    $validatedData = $request->validate([]);
+
+    ${{modelNameSingularLowerCase}} = {{modelName}}::create($validatedData);
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index');
+    }
+
+    public function show({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        return Inertia::render('{{modelNamePluralLowerCase}}/Show', compact('{{modelNameSingularLowerCase}}'));
+    }
+
+    public function edit({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        return Inertia::render('{{modelNamePluralLowerCase}}/Edit', compact('{{modelNameSingularLowerCase}}'));
+    }
+
+    public function update(Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        // Validation logic here
+        $validatedData = $request->validate([]);
+
+        ${{modelNameSingularLowerCase}}->update($validatedData);
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index');
+    }
+
+    public function destroy({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        ${{modelNameSingularLowerCase}}->delete();
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index');
+    }
+}
